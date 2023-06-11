@@ -44,9 +44,11 @@ export class PostsService {
   }
 
   deleteById(user: AuthUser, id: string): void {
-    this.posts = this.posts.filter(
+    const idx = this.posts.findIndex(
       (post) => post.id === id && post.createdBy === user.sub,
     );
+    if (idx > -1) this.posts.splice(idx, 1);
+    else throw PostNotFoundException.byId(id);
   }
 }
 
