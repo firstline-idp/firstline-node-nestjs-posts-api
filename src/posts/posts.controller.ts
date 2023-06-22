@@ -59,7 +59,7 @@ export class PostsController {
   }
 
   //@Roles(Role.)
-  @HttpCode(200)
+  @HttpCode(204)
   @Delete(':id')
   delete(@CurrentUser() authUser: AuthUser, @Param('id') _id: string): void {
     this.postsService.deleteById(authUser, _id);
